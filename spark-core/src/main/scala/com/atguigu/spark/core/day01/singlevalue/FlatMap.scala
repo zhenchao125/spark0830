@@ -1,8 +1,7 @@
-package com.atguigu.spark.core.day01
+package com.atguigu.spark.core.day01.singlevalue
 
-import org.apache.spark
 import org.apache.spark.rdd.RDD
-import org.apache.spark.{SparkConf, SparkContext, rdd}
+import org.apache.spark.{SparkConf, SparkContext}
 
 /**
   * Author atguigu
@@ -16,7 +15,7 @@ object FlatMap {
         val rdd1: RDD[Int] = sc.parallelize(list1, 2)
         // 得到一个新的rdd, rdd存储的是这个数和他们的平方, 立方
 //        val rdd2: RDD[Int] = rdd1.flatMap(x => Array(x, x * x, x* x * x))
-        
+
 //        val rdd2 = rdd1.flatMap(x => if(x >= 50) Array(x) else Array[Int]())
         
         val rdd2 = rdd1.flatMap(x => x + "")

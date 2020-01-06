@@ -1,4 +1,4 @@
-package com.atguigu.spark.core.day01
+package com.atguigu.spark.core.day01.singlevalue
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -21,22 +21,3 @@ object CreateRDD {
         
     }
 }
-
-/*
-
-RDD编程:
-    1. 先得到一个RDD
-           1. 从文件中获取
-                sc.textFile(...)
-                
-           2. 从现有的scala集合来获取一个RDD
-           
-           3. 通过其他的RDD转换得到(transformation)
-    
-    2. 对RDD做各种转换
-        workcount:
-                .flatMap.map.reduceByKey...
-                
-    3. 有一个action
-
- */
