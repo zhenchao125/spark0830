@@ -26,6 +26,9 @@ object Hello {
         // 5. 关闭SparkContext
         sc.stop()
         
+        
+        val list1 = List(30, 50, 70, 60, 10, 20)
+        
         //ab
         // 原始
     }
