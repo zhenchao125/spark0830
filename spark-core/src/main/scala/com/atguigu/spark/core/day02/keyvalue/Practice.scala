@@ -28,6 +28,7 @@ object Practice {
             case (pro, it) =>
                 (pro, it.toList.sortBy(_._2)(Ordering.Int.reverse).take(3))
         }.sortBy(_._1.toInt)
+        
         resultRDD.collect.foreach(println)
         sc.stop()
         
@@ -40,8 +41,6 @@ object Practice {
         1516609143869 9 4 75 18
         1516609143869 1 7 87 12
 2.	需求: 统计出每一个省份广告被点击次数的 TOP3
-
-
 
 倒推法:
 => ...
