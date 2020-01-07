@@ -1,4 +1,4 @@
-package com.atguigu.spark.core.day02.action
+package com.atguigu.spark.core.day02.keyvalue
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -25,7 +25,3 @@ object GroupByKey {
         
     }
 }
-
-/*
-用大括号括起来的多个或一个case 语句
- */

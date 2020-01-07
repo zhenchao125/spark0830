@@ -1,4 +1,4 @@
-package com.atguigu.spark.core.day02.action
+package com.atguigu.spark.core.day02.keyvalue
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
@@ -28,5 +28,3 @@ object SortByKey1 {
         sc.stop
     }
 }
-
-

@@ -1,4 +1,4 @@
-package com.atguigu.spark.core.day02.action
+package com.atguigu.spark.core.day02.keyvalue
 
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -19,26 +19,3 @@ object CombineByKey {
         sc.stop
     }
 }
-
-/*
-
-聚合算子的特征:
- 1. 都需要shuffle
- 2. 都有预聚合
-
-reduceByKey
-    combineByKeyWithClassTag[V]((v: V) => v, func, func, partitioner)
-
-foldByKey
-    combineByKeyWithClassTag[V]((v: V) => cleanedFunc(createZero(), v),
-      cleanedFunc, cleanedFunc, partitioner)
-
-aggregateByKey
-    combineByKeyWithClassTag[U]((v: V) => cleanedSeqOp(createZero(), v),
-      cleanedSeqOp, combOp, partitioner)
-
-combineByKey
-    combineByKeyWithClassTag(createCombiner, mergeValue, mergeCombiners)(null)
-
-
- */
