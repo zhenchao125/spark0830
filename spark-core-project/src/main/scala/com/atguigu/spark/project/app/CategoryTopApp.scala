@@ -11,7 +11,7 @@ import org.apache.spark.rdd.RDD
   */
 object CategoryTopApp {
     // 统计 计算
-    def statCategoryTop10(sc: SparkContext, userVisitActionRDD: RDD[UserVisitAction]) = {
+    def statCategoryTop10(sc: SparkContext, userVisitActionRDD: RDD[UserVisitAction]): Array[CategoryCountInfo] = {
         val acc = new CategoryAcc
         sc.register(acc, "CategoryAcc")
         // 变量RDD, 计算每个cid的3个指标
@@ -32,7 +32,6 @@ object CategoryTopApp {
         categroyCountInfos
             .sortBy(info => (-info.clickCount, -info.orderCount, -info.payCount))
             .take(10)
-            .foreach(println)
     }
 }
 /*

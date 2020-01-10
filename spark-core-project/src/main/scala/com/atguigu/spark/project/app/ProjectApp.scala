@@ -1,6 +1,6 @@
 package com.atguigu.spark.project.app
 
-import com.atguigu.spark.project.bean.UserVisitAction
+import com.atguigu.spark.project.bean.{CategoryCountInfo, UserVisitAction}
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -13,6 +13,7 @@ object ProjectApp {
         // 1. 读取数据
         val conf: SparkConf = new SparkConf().setAppName("ProjectApp").setMaster("local[2]")
         val sc: SparkContext = new SparkContext(conf)
+//        sc.setLogLevel("error")
         val sourceRDD: RDD[String] = sc.textFile("C:/user_visit_action.txt")
         // 1.1 封装数据
         val userVisitActionRDD: RDD[UserVisitAction] = sourceRDD.map(line => {
@@ -38,9 +39,9 @@ object ProjectApp {
         
         
         // 2. 需求1:
-        CategoryTopApp.statCategoryTop10(sc, userVisitActionRDD)
-        
+        val categoryTop10: Array[CategoryCountInfo] = CategoryTopApp.statCategoryTop10(sc, userVisitActionRDD)
         // 3. 需求2:
+        CategoryTop10SessionApp.calcCategorySessionTop10(sc, categoryTop10, userVisitActionRDD)
         
         // 4. 需求3:
         
