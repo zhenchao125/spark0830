@@ -31,7 +31,7 @@ object CategoryTop10SessionApp {
     }
     
     def calcCategorySessionTop10_1(sc: SparkContext, categoryTop10: Array[CategoryCountInfo], userVisitActionRDD: RDD[UserVisitAction]) = {
-        // 1.过滤出来前10的品类id的点击记录\
+        // 1.过滤出来前10的品类id的点击记录
         val cids: Array[Long] = categoryTop10.map(_.categoryId.toLong)
         val filteredUserVisitActionRDD: RDD[UserVisitAction] =
             userVisitActionRDD.filter(action => cids.contains(action.click_category_id))
