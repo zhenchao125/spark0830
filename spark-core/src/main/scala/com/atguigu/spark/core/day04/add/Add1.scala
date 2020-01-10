@@ -9,6 +9,7 @@ object Add1 {
         val conf: SparkConf = new SparkConf().setAppName("Add").setMaster("local[2]")
         val sc: SparkContext = new SparkContext(conf)
         val list1 = List(30, 50, 70, 60, 10, 20)
+        
         val rdd1: RDD[Int] = sc.parallelize(list1, 4)
         
         val a: LongAccumulator = sc.longAccumulator("first")
@@ -16,6 +17,7 @@ object Add1 {
             a.add(1)
             x
         })
+        rdd2.checkpoint()
         rdd2.collect
         println(a.value)
         sc.stop()

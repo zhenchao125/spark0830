@@ -33,6 +33,8 @@ object CategoryTopApp {
             .sortBy(info => (-info.clickCount, -info.orderCount, -info.payCount))
             .take(10)
             .foreach(println)
-        
     }
 }
+/*
+累加器一般是在行动算子中使用
+ */
