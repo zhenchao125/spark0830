@@ -11,6 +11,7 @@
     <modules>
         <module>spark-core</module>
         <module>spark-core-project</module>
+        <module>spar-ksql</module>
     </modules>
 
     <dependencies>
@@ -25,6 +26,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.27</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>2.1.1</version>
         </dependency>
 
 
