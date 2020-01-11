@@ -38,11 +38,12 @@ object ProjectApp {
         // 1.2 数据清洗
         
         // 2. 需求1:
-        val categoryTop10: Array[CategoryCountInfo] = CategoryTopApp.statCategoryTop10(sc, userVisitActionRDD)
+//        val categoryTop10: Array[CategoryCountInfo] = CategoryTopApp.statCategoryTop10(sc, userVisitActionRDD)
         // 3. 需求2:
-        CategoryTop10SessionApp.calcCategorySessionTop10_3(sc, categoryTop10, userVisitActionRDD)
+//        CategoryTop10SessionApp.calcCategorySessionTop10_3(sc, categoryTop10, userVisitActionRDD)
         
         // 4. 需求3:
+        PageConversionApp.statPageConversionRate(sc, userVisitActionRDD, "1,2,3,4,5,6,7")
         
         
         sc.stop()
