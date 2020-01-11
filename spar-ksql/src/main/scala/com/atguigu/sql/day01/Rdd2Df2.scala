@@ -1,7 +1,7 @@
 package com.atguigu.sql.day01
 
-import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.types.{IntegerType, StringType, StructField, StructType}
+import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 
 /**
   * Author atguigu
@@ -15,14 +15,21 @@ object Rdd2Df2 {
             .appName("Rdd2Df")
             .getOrCreate()
         val list1: List[(String, Int)] = List(("lisi", 20), ("zs", 10))
-        val rdd: RDD[(String, Int)] = spark.sparkContext.parallelize(list1)
+        val rdd = spark.sparkContext.parallelize(list1).map {
+            case (name, age) =>
+                Row(name, age)
+        }
         
+        //        val schema = StructType(List(StructField("name", StringType), StructField("age", IntegerType) ))
+        val schema = StructType(StructField("name", StringType) :: StructField("age", IntegerType) :: Nil)
+        val df: DataFrame = spark.createDataFrame(rdd, schema)
+        
+        df.show(100)
         
         spark.stop()
     }
 }
 
-case class User(name: String, age: Int)
 
 /*
 import spark.implicits._
@@ -30,7 +37,10 @@ rdd->df
     1. rdd中存储是元组
         rdd.toDF("c1", "c2")
         
-    2. rdd中存储是样例类
+    2. rdd中存储是样例类(√)
         rdd.toDF
+    
+    3. 使用SparkSession提供的原始api
+        park.createDataFrame(rdd, schema)
 
  */

@@ -1,6 +1,7 @@
 package com.atguigu.sql.day01
 
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 
 /**
   * Author atguigu
@@ -13,15 +14,15 @@ object Df2Rdd {
             .master("local[2]")
             .appName("Rdd2Df")
             .getOrCreate()
-        import spark.implicits._
-        // 2. 创建df(把rdd转换df)
-        val list1 = List(User("lisi", 20), User("zs", 10))
-        val rdd= spark.sparkContext.parallelize(list1)
-        val df: DataFrame = rdd.toDF
-        // 3. 查询df
-        df.show
-        spark.createDataFrame()
-        // 4. 关闭session
+        
+        val df: DataFrame = spark.read.json("c:/users.json")
+        val rdd: RDD[Row] = df.rdd
+        
+        val rdd1 = rdd.map(row => {
+            User(row.getString(1), row.getLong(0).toInt)
+        })
+    
+        rdd1.collect.foreach(println)
         spark.stop()
     }
 }
@@ -35,5 +36,12 @@ rdd->df
         
     2. rdd中存储是样例类
         rdd.toDF
+        
+    3. 使用SparkSession提供的原始api
+        park.createDataFrame(rdd, schema)
+        
+df->rdd
+    val rdd :RDD[Row] =
+  df.rdd
 
  */
