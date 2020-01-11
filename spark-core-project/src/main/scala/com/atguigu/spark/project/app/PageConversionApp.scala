@@ -1,5 +1,7 @@
 package com.atguigu.spark.project.app
 
+import java.text.DecimalFormat
+
 import com.atguigu.spark.project.bean.UserVisitAction
 import org.apache.spark.SparkContext
 import org.apache.spark.rdd.RDD
@@ -44,9 +46,12 @@ object PageConversionApp {
         
         
         // 4. 计算跳转率
-        val result: Iterable[Double] = totalPageFlows.map {
+        val result = totalPageFlows.map {
             // "1->2", 100      1
-            case (pageFlow, count) => count.toDouble / pageAndCount(pageFlow.split("->")(0).toLong)
+            case (pageFlow, count) =>
+                val formatter = new DecimalFormat(".00%")
+                val rate = count.toDouble / pageAndCount(pageFlow.split("->")(0).toLong)
+                (pageFlow, formatter.format(rate))
         }
         result.foreach(println)
         
