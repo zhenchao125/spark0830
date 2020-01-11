@@ -125,12 +125,13 @@ object CategoryTop10SessionApp {
 }
 
 class CategoryPartitioner(cids: Array[Long]) extends Partitioner {
+    // 使用cid的索引作为他将来的分区所用
     private val map: Map[Long, Int] = cids.zipWithIndex.toMap
     
     // 分区的个数设置为和品类的id树保持一致, 将来保证一个分区内只有一个品类的数据
     override def numPartitions: Int = cids.length
     
-    // 根据key来返回这个key应用取的那个分区的索引
+    // 根据key来返回这个key应去的那个分区的索引
     override def getPartition(key: Any): Int = {
         key match {
             case (k: Long, _) => map(k)
