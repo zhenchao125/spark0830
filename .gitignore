@@ -21,4 +21,4 @@ spark-core-project/target/generated-sources/
 spark-core-project/target/generated-test-sources/
 spark-warehouse/
 
-
+spar-ksql/target/
