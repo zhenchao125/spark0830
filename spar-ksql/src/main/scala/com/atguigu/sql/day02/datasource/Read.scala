@@ -6,7 +6,7 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
   * Author atguigu
   * Date 2020/1/12 8:36
   */
-object ReadAndWrite {
+object Read {
     def main(args: Array[String]): Unit = {
         val spark: SparkSession = SparkSession
             .builder()
