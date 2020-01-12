@@ -15,7 +15,7 @@ object Hive {
             .appName("Hive")
             .enableHiveSupport()  // 支持外置hive
             .config("spark.sql.warehouse.dir", "hdfs://hadoop102:9000/user/hive/warehouse/")
-            // 如果想让spark写入的parquet的文件, 在hive中也可以查看到, 则关闭这个配置
+            // 如果想让spark写入的parquet的数据, 在hive中也可以查看到, 则关闭这个配置
             .config("spark.sql.hive.convertMetastoreParquet", false)
             .getOrCreate()
         import spark.implicits._
