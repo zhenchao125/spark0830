@@ -13,3 +13,9 @@ spark-core/src/main/java/
 spark-core/src/test/
 spark-core/target/
 spark0830.iml
+
+spar-ksql/src/test/
+spark-core-project/target/generated-sources/
+spark-core-project/target/generated-test-sources/
+spark-warehouse/
+
