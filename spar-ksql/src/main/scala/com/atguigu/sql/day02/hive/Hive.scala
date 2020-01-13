@@ -27,6 +27,7 @@ object Hive {
         //向hive写数据
 //        val df = Seq(("lisi", 201), ("zs", 161)).toDF("name", "age")
         val df = Seq(( 202, "lisi"), (162, "zs")).toDF("age", "name")
+        df.select("age")
         // 可以自动给我们创建表  如果是追加模式列名要保持一致, 顺序无所谓
         df.write.mode("append").saveAsTable("user0832")
         // 插入的时候表必须存在  不看名, 只用位置
@@ -53,4 +54,14 @@ object Hive {
 2. mysql 驱动
 3. 依赖:spark-hive依赖
 4. .enableHiveSupport()
+
+spark on hive 和 hive on spark
+
+hive on mr/tez/spark
+    1. 编译 spark  without hive
+        兼容性问题比较大
+    2. 把jar放在hive的lib 里面
+
+spark-sql:spark on hive
+
  */

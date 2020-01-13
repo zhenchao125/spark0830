@@ -12,6 +12,7 @@
         <module>spark-core</module>
         <module>spark-core-project</module>
         <module>spar-ksql</module>
+        <module>spark-sql-project</module>
     </modules>
 
     <dependencies>
