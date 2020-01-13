@@ -13,6 +13,7 @@
         <module>spark-core-project</module>
         <module>spar-ksql</module>
         <module>spark-sql-project</module>
+        <module>spark-streaming</module>
     </modules>
 
     <dependencies>
@@ -41,6 +42,11 @@
             <version>2.1.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.11</artifactId>
+            <version>2.1.1</version>
+        </dependency>
 
     </dependencies>
     <build>
