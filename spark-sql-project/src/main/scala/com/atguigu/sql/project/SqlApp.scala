@@ -8,13 +8,13 @@ import org.apache.spark.sql.SparkSession
   */
 object SqlApp {
     def main(args: Array[String]): Unit = {
+        System.setProperty("HADOOP_USER_NAME", "atguigu")
         val spark: SparkSession = SparkSession
             .builder()
             .master("local[*]")
             .appName("SqlApp")
             .enableHiveSupport()
             .getOrCreate()
-        import spark.implicits._
         spark.sql("use sql0830")
         spark.sql(
             """
@@ -51,7 +51,7 @@ object SqlApp {
             """.stripMargin).createOrReplaceTempView("t3")
         
         
-        spark.sql(
+        val df = spark.sql(
             """
               |select
               |    area,
@@ -60,11 +60,16 @@ object SqlApp {
               |    remark
               |from t3
               |where rk<=3
-            """.stripMargin).show(50, false)   // 只要碰到一个行动(show, save, insertInto, saveAsTable), 前面所有的sql都执行
+            """.stripMargin) // 只要碰到一个行动(show, save, insertInto, saveAsTable), 前面所有的sql都执行
+        //        println(df.rdd.getNumPartitions)
+        //
+        df.coalesce(1) // 如成为果前面有聚合,则df会默认会成为200个分区, 为了减少将来文件个数, 减少分区
+            .write.mode("overwrite").saveAsTable("area_city_count")
         spark.close()
         
     }
 }
+
 /*
 // 1. 先把需要的字段查出来  t1
 select

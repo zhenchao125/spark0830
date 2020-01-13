@@ -78,7 +78,8 @@ object RemarkUDAF extends UserDefinedAggregateFunction {
     }
 }
 
-case class CityRemark(cityName: String, cityRatio: Double){
+case class CityRemark(cityName: String, cityRatio: Double) {
     private val f = new DecimalFormat(".00%")
+    
     override def toString: String = s"$cityName:${f.format(cityRatio)}"
 }
