@@ -1,43 +1,43 @@
-package com.atguigu.spark.streaming.day01.kafka
-
+package com.atguigu.spark.streaming.day02.kafka
 
 import kafka.serializer.StringDecoder
 import org.apache.spark.SparkConf
-import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.kafka.KafkaUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
   * Author atguigu
-  * Date 2020/1/13 16:40
+  * Date 2020/1/15 8:21
   */
-object WordCount1 {
-    def main(args: Array[String]): Unit = {
-        val conf: SparkConf = new SparkConf().setAppName("a").setMaster("local[2]")
-        val ssc: StreamingContext = new StreamingContext(conf, Seconds(3))
+object WordCount {
+    def createSSC() = {
+        val conf: SparkConf = new SparkConf().setMaster("local[*]").setAppName("WordCount")
+        val ssc = new StreamingContext(conf, Seconds(3))
+        ssc.checkpoint("./ck1")
         val params: Map[String, String] = Map[String, String](
             "group.id" -> "0830",
             "bootstrap.servers" -> "hadoop102:9092,hadoop103:9092,hadoop104:9092")
         // 从kafka读取数据
-        val sourceStream: InputDStream[(String, String)] = KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](
+        KafkaUtils.createDirectStream[String, String, StringDecoder, StringDecoder](
             ssc,
             params,
             Set("s0830"))
-        sourceStream
-            /*.map {
-                case (_, v) => v
-            }
-            .flatMap(_.split("\\W+"))
-            .map((_, 1))*/
             .flatMap {
                 case (_, v) => v.split("\\W+").map((_, 1))
             }
             .reduceByKey(_ + _)
-            .print(1000)
+            .print()
+        ssc
+    }
+    
+    
+    def main(args: Array[String]): Unit = {
         
+        val ssc = StreamingContext.getActiveOrCreate("./ck1", createSSC)
         
         ssc.start()
-        
         ssc.awaitTermination()
+        
+        
     }
 }
