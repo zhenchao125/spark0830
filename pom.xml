@@ -14,6 +14,7 @@
         <module>spar-ksql</module>
         <module>spark-sql-project</module>
         <module>spark-streaming</module>
+        <module>mock-data</module>
     </modules>
 
     <dependencies>
