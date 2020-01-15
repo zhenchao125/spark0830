@@ -15,6 +15,7 @@
         <module>spark-sql-project</module>
         <module>spark-streaming</module>
         <module>mock-data</module>
+        <module>spark-streaming-project</module>
     </modules>
 
     <dependencies>
