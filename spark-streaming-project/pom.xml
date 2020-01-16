@@ -10,12 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spark-streaming-project</artifactId>
-<dependencies>
-    <dependency>
-        <groupId>org.apache.spark</groupId>
-        <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
-        <version>2.1.1</version>
-    </dependency>
-</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <!--连接到redis的客户端-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.3</version>
+        </dependency>
+    </dependencies>
 
 </project>

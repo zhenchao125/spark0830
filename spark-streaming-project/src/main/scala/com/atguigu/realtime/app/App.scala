@@ -11,7 +11,7 @@ trait App {
         // 1. 创建SteamingContext
         val conf: SparkConf = new SparkConf().setMaster("local[*]").setAppName("App")
         val ssc: StreamingContext = new StreamingContext(conf, Seconds(5))
-        
+        ssc.checkpoint("./realtime")
         // 2. 从kafka读数据  1579078203631,华东,上海,105,2  并封装到样例类中
         val sourceStream= MyKafkaUtil.getKafkaStream(ssc, "ads_log").map(s => {
             val split: Array[String] = s.split(",")
@@ -19,7 +19,6 @@ trait App {
         })
         
         // 3. 操作DStream
-        // TODO
         doSomething(sourceStream)
         // 4. 启动ssc和阻止main方法退出
         ssc.start()
