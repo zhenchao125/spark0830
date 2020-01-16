@@ -48,7 +48,6 @@ object AreaAdsClickTop3App extends App {
                         
                         client.hset(key, field, value)
                 }
-                
                 // 关闭到redis的连接
                 client.close()
             })
