@@ -69,6 +69,6 @@ object LastHourAdsClickApp extends App {
                      "last:ads:hour"                hash
                                                     field     value
                                                     adsId   {"11:16": 100, "11:17": 2000, .....}
-                 */
+     */
 
  */
