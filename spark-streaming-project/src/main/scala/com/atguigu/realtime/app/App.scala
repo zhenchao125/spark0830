@@ -12,7 +12,7 @@ trait App {
         val conf: SparkConf = new SparkConf().setMaster("local[*]").setAppName("App")
         val ssc: StreamingContext = new StreamingContext(conf, Seconds(5))
         
-        // 2. 从kafka读数据  1579078203631,华东,上海,105,2
+        // 2. 从kafka读数据  1579078203631,华东,上海,105,2  并封装到样例类中
         val sourceStream= MyKafkaUtil.getKafkaStream(ssc, "ads_log").map(s => {
             val split: Array[String] = s.split(",")
             AdsInfo(split(0).toLong, split(1), split(2), split(3), split(4))

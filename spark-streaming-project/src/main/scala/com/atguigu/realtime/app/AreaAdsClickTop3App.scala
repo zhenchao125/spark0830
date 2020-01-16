@@ -1,6 +1,6 @@
 package com.atguigu.realtime.app
+
 import com.atguigu.realtime.bean.AdsInfo
-import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.dstream.DStream
 
 /**
