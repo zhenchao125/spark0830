@@ -53,6 +53,7 @@ object AreaAdsClickTop3App extends App {
             })
         })
     }
+    
 }
 
 /*
