@@ -23,7 +23,7 @@ object Hive {
         //从外置hive读数据
 //        spark.sql("use gmall")
 //        spark.sql("select * from ads_uv_count").show
-        
+
         //向hive写数据
 //        val df = Seq(("lisi", 201), ("zs", 161)).toDF("name", "age")
         val df = Seq(( 202, "lisi"), (162, "zs")).toDF("age", "name")
